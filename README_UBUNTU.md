@@ -129,6 +129,7 @@ npm run setup:dev
 
 # Before running docker:dev, ensure permissions are set correctly:
 sudo chmod 666 /var/run/docker.sock
+sudo setfacl --modify user:<user name or ID>:rw /var/run/docker.sock
 
 npm run docker:dev
 npm run db:migrate:deploy
