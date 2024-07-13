@@ -107,7 +107,7 @@ npm install -g npm@9.0.0
 
 ### Setup 6 - Connect GitHub App...
 
-This step is crucial. Follow the instructions here: [Connect Server to GitHub](https://docs.amplication.com/running-amplication-platform/connect-server-to-github/) or modify the environment file as follows:
+This step is crucial. Follow the instructions here: [Connect Server to GitHub](https://docs.amplication.com/running-amplication-platform/connect-server-to-github/) AND AFTER THIS:
 
 ```sh
 # Find the correct path for your file and edit it
@@ -116,6 +116,7 @@ nano .../amplication/packages/amplication-client/.env
 # NX_REACT_APP_GITHUB_AUTH_ENABLED="true"
 # to
 NX_REACT_APP_GITHUB_AUTH_ENABLED="false"
+NX_REACT_APP_BILLING_ENABLED="false"
 ```
 
 ### Setup 7 - Amplification Installation
@@ -159,6 +160,35 @@ npm run serve:client
 npm run serve:dsg
 npm run serve:git
 npm run serve:plugins
+```
+
+### Setup 8 - Sing Up
+
+1. Make a account and get a error about Git Hub ID
+2. Try Login with account and get error
+3. 
+```sql
+UPDATE public."Account"
+set "currentUserId" = sub."id"
+FROM (SELECT "id", "accountId" FROM public."User")  as sub
+where sub."accountId" = "accountId";
+
+
+INSERT INTO public."Subscription"
+SELECT 
+	'clyj6bycn00019s1j46f1x722', '2024-07-12T22:09:50', '2024-07-12T22:09:50'
+	, ws."id", 'Pro','Active', '2600-07-12T22:09:50+0000'	
+from public."Workspace" ws;
+
+
+INSERT INTO public."UserRole"
+SELECT 
+	'clyj6bycn00019s1j46f1x722',
+	'2024-07-12T22:09:50', 
+	'2024-07-12T22:09:50'
+	, uu."id"
+	, 'Admin'
+from public."User" uu;
 ```
 
 ### Contributing
